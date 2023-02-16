@@ -31,15 +31,27 @@ namespace BankAccount
         /// <param name="amount">amount to deposit</param>
         public double Deposit(double amount) 
         {
+            if (amount <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Amount must be more than 0");
+            }
             return Balance += amount;
         }
         /// <summary>
         /// Removes given amount from account
         /// </summary>
         /// <param name="amount">amount to take from balance</param>
-        public void Withdraw(double amount)
+        public double Withdraw(double amount)
         {
-            Balance -= amount;
+            if (amount <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Amount must be more than 0");
+            }
+            if (amount > Balance)
+            {
+                throw new ArgumentOutOfRangeException("Amount can not be more than balance");
+            }
+            return Balance -= amount;
         }
     }
 }
