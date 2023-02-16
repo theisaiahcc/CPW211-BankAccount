@@ -29,9 +29,9 @@ namespace BankAccount
         /// Adds given amount to account
         /// </summary>
         /// <param name="amount">amount to deposit</param>
-        public void Deposit(double amount) 
+        public double Deposit(double amount) 
         {
-            Balance += amount;
+            return Balance += amount;
         }
         /// <summary>
         /// Removes given amount from account
