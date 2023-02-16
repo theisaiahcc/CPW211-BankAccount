@@ -12,6 +12,8 @@ namespace BankAccount
     /// <param name="accOwner">Account owners full name</param>
     public class Account
     {
+        private string owner;
+
         public Account(string accOwner)
         {
             Owner = accOwner;
@@ -20,7 +22,22 @@ namespace BankAccount
         /// <summary>
         /// Account owners full name
         /// </summary>
-        public string Owner { get; set; }
+        public string Owner 
+        {
+            get { return owner; }
+            set 
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException($"{Owner} cannot be null.");
+                }
+                if (value == String.Empty)
+                {
+                    throw new ArgumentException($"{Owner} cannot be empty.");
+                }
+                owner = value;
+            }  
+        }
         /// <summary>
         /// Amount of money in account
         /// </summary>
@@ -29,7 +46,7 @@ namespace BankAccount
         /// Adds given amount to account
         /// </summary>
         /// <param name="amount">amount to deposit</param>
-        public double Deposit(double amount) 
+        public double Deposit(double amount)
         {
             if (amount <= 0)
             {

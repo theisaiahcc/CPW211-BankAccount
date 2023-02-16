@@ -70,5 +70,17 @@ namespace BankAccount.Tests
             acc.Deposit(100);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => acc.Withdraw(101));
         }
+
+        [TestMethod()]
+        public void Owner_SetAsNull_ThrowsArgumentNullException()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => acc.Owner = null);
+        }
+
+        [TestMethod]
+        public void Owner_SetAsWhiteSpaceOrEmptyString_ThrowsArgumentException()
+        {
+            Assert.ThrowsException<ArgumentException>(() => acc.Owner = String.Empty);
+        }
     }
 }
